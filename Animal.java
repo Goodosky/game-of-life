@@ -1,7 +1,5 @@
 package simulation;
 
-import java.io.Serializable;
-
 public abstract class Animal extends Organism {
     protected int range = 1;
 

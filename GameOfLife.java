@@ -43,6 +43,7 @@ public class GameOfLife extends JFrame  {
         availableOrganisms.put("Sheep", "simulation.animals.Sheep");
         availableOrganisms.put("Wolf", "simulation.animals.Wolf");
         availableOrganisms.put("Fox", "simulation.animals.Fox");
+        availableOrganisms.put("Antelope", "simulation.animals.Antelope");
     }
 
     private void initializeGUI() {
@@ -137,7 +138,7 @@ public class GameOfLife extends JFrame  {
         // Add random organism to the board
         int number_of_organisms = (int) (WIDTH * HEIGHT * INITIAL_WORLD_FILLING);
 
-        for (int i = 0; i < number_of_organisms; i++) {
+/*        for (int i = 0; i < number_of_organisms; i++) {
             // Draw position
             int x = (int) (Math.random() * WIDTH);
             int y = (int) (Math.random() * HEIGHT);
@@ -152,7 +153,9 @@ public class GameOfLife extends JFrame  {
             String organismName = (String) availableOrganisms.keySet().toArray()[random_index];
 
             addOrganism(organismName, x, y);
-        }
+        }*/
+
+        addOrganism("Wolf", 0, 0);
 
         updateOrganismsArray();
     }
@@ -300,7 +303,7 @@ public class GameOfLife extends JFrame  {
                     break;
             }
 
-            //  return a new position if it's is in the world
+            //  return a new position if it's in the world
             if(new_x >= 0 && new_x < WIDTH && new_y >= 0 && new_y < HEIGHT) {
                 if (can_be_occupied || board[new_x][new_y] == null) {
                     return new int[]{new_x, new_y};

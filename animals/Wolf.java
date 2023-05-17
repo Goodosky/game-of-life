@@ -1,9 +1,6 @@
 package simulation.animals;
 
-import simulation.Animal;
-import simulation.GameOfLife;
-
-import java.io.Serializable;
+import simulation.*;
 
 public class Wolf extends Animal {
     public Wolf(int x, int y, GameOfLife worldRef) {
