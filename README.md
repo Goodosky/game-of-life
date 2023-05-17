@@ -1,5 +1,5 @@
 ## Description
-Simple simulation of a world with animals and plants. Animals can move around the map, eat plants and animals, reproduce and die. Plants can spread around the map and be eaten by animals.
+Simple simulation of a world with animals and plants. Animals can move around the map, eat plants and animals, reproduce and die. Plants can spread around the map and be eaten by animals. Moreover animals and plants have their own special abilities. The simulation also implements a human that the player can control.
 
 The purpose of this project is to learn more about object-oriented programming in Java.
 
