@@ -46,11 +46,12 @@ public abstract class Organism implements Serializable {
 
     public void fight(Organism attacker) {
         if (attacker.getPower() >= power) {
-            isAlive = false;
+            // Attacker kills defender
             worldRef.log("💀 " + attacker.getName() + " (attacker) ate " + name + " at (" + x + ", " + y + ")");
             worldRef.removeOrganism(this);
             worldRef.moveOrganism(attacker, x, y);
         } else {
+            // Defender kills attacker
             worldRef.log("💀 " + name + " (defender) ate " + attacker.getName() + " at (" + x + ", " + y + ")");
             worldRef.removeOrganism(attacker);
         }
