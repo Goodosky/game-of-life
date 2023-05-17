@@ -48,6 +48,7 @@ public class GameOfLife extends JFrame  {
         availableOrganisms.put("Dandelion", "simulation.plants.Dandelion");
         availableOrganisms.put("Grass", "simulation.plants.Grass");
         availableOrganisms.put("Guarana", "simulation.plants.Guarana");
+        availableOrganisms.put("Nightshade", "simulation.plants.Nightshade");
 
     }
 
