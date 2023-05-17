@@ -102,5 +102,9 @@ public abstract class Organism implements Serializable {
         this.worldRef = worldRef;
     }
 
+    public void setPower(int power) {
+        this.power = power;
+    }
+
 
 }
