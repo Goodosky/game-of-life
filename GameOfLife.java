@@ -37,7 +37,6 @@ public class GameOfLife extends JFrame  {
 
     public GameOfLife() {
         super("Game of Life");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         initializeGUI();
 
         availableOrganisms.put("Sheep", "simulation.animals.Sheep");
@@ -45,9 +44,14 @@ public class GameOfLife extends JFrame  {
         availableOrganisms.put("Fox", "simulation.animals.Fox");
         availableOrganisms.put("Antelope", "simulation.animals.Antelope");
         availableOrganisms.put("Turtle", "simulation.animals.Turtle");
+
+        availableOrganisms.put("Dandelion", "simulation.plants.Dandelion");
+
     }
 
     private void initializeGUI() {
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
         // Add Board to JFrame
         boardPanel = new JPanel();
         boardPanel.setBackground(Color.GREEN);
