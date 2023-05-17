@@ -15,8 +15,8 @@ import simulation.animals.*;
 
 
 public class GameOfLife extends JFrame  {
-    private static final int WIDTH = 20;
-    private static final int HEIGHT = 20;
+    public static final int WIDTH = 20;
+    public static final int HEIGHT = 20;
     private static final int CELL_SIZE = 20;
     private static final int FRAME_HEIGHT = 650;
     private static final int FRAME_WIDTH = 650;
@@ -49,6 +49,7 @@ public class GameOfLife extends JFrame  {
         availableOrganisms.put("Grass", "simulation.plants.Grass");
         availableOrganisms.put("Guarana", "simulation.plants.Guarana");
         availableOrganisms.put("Nightshade", "simulation.plants.Nightshade");
+        availableOrganisms.put("PineBorscht", "simulation.plants.PineBorscht");
 
     }
 
