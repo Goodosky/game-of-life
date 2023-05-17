@@ -28,10 +28,10 @@ public class Antelope extends Animal {
         int new_y = newCoordinates[1];
 
         if(x == new_x && y == new_y) {
-            worldRef.log("🎁🎁🎁🎁🎁🎁 Antelope had nowhere to run! He has to fight now...");
+            worldRef.log("🎁 Antelope had nowhere to run! He has to fight now...");
             super.fight(attacker);
         } else {
-            worldRef.log("🎁🎁🎁🎁🎁🎁 Antelope escaped from the fight");
+            worldRef.log("🎁 Antelope escaped from the fight");
             move(new_x, new_y);
         }
     }
