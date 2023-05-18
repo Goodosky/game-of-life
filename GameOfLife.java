@@ -50,7 +50,6 @@ public class GameOfLife extends JFrame  {
         availableOrganisms.put("Guarana", "simulation.plants.Guarana");
         availableOrganisms.put("Nightshade", "simulation.plants.Nightshade");
         availableOrganisms.put("PineBorscht", "simulation.plants.PineBorscht");
-
     }
 
     private void initializeGUI() {
@@ -90,6 +89,45 @@ public class GameOfLife extends JFrame  {
 
         setSize(FRAME_WIDTH, FRAME_HEIGHT);
         setVisible(true);
+    }
+
+    private void initializeBoard() {
+        board = new Organism[WIDTH][HEIGHT];
+        organisms = new ArrayList<Organism>();
+        organismsToAdd = new ArrayList<Organism>();
+        organismsToRemove = new ArrayList<Organism>();
+
+        for (int i = 0; i < WIDTH; i++) {
+            for (int j = 0; j < HEIGHT; j++){
+                board[j][i] = null;
+            }
+        }
+
+        // Add random organism to the board
+        int number_of_organisms = (int) (WIDTH * HEIGHT * INITIAL_WORLD_FILLING);
+
+        for (int i = 0; i < number_of_organisms; i++) {
+            // Draw position
+            int x = (int) (Math.random() * WIDTH);
+            int y = (int) (Math.random() * HEIGHT);
+
+            while (board[x][y] != null) {
+                x = (int) (Math.random() * WIDTH);
+                y = (int) (Math.random() * HEIGHT);
+            }
+
+            // Draw organism
+            int random_index = (int) (Math.random() * availableOrganisms.size());
+            String organismName = (String) availableOrganisms.keySet().toArray()[random_index];
+
+            addOrganism(organismName, x, y);
+        }
+
+        Organism human = new Human(WIDTH / 2, HEIGHT / 2, this);
+        board[WIDTH / 2][HEIGHT / 2] = human;
+        organismsToAdd.add(human);
+
+        updateOrganismsArray();
     }
 
     private void saveGame() {
@@ -132,40 +170,7 @@ public class GameOfLife extends JFrame  {
         logTextArea.setCaretPosition(logTextArea.getDocument().getLength());
     }
 
-    private void initializeBoard() {
-        board = new Organism[WIDTH][HEIGHT];
-        organisms = new ArrayList<Organism>();
-        organismsToAdd = new ArrayList<Organism>();
-        organismsToRemove = new ArrayList<Organism>();
 
-        for (int i = 0; i < WIDTH; i++) {
-            for (int j = 0; j < HEIGHT; j++){
-                board[j][i] = null;
-            }
-        }
-
-        // Add random organism to the board
-        int number_of_organisms = (int) (WIDTH * HEIGHT * INITIAL_WORLD_FILLING);
-
-        for (int i = 0; i < number_of_organisms; i++) {
-            // Draw position
-            int x = (int) (Math.random() * WIDTH);
-            int y = (int) (Math.random() * HEIGHT);
-
-            while (board[x][y] != null) {
-                x = (int) (Math.random() * WIDTH);
-                y = (int) (Math.random() * HEIGHT);
-            }
-
-            // Draw organism
-            int random_index = (int) (Math.random() * availableOrganisms.size());
-            String organismName = (String) availableOrganisms.keySet().toArray()[random_index];
-
-            addOrganism(organismName, x, y);
-        }
-
-        updateOrganismsArray();
-    }
 
     private void drawBoard() {
         boardPanel.removeAll();
@@ -176,7 +181,7 @@ public class GameOfLife extends JFrame  {
         for (int i = 0; i < HEIGHT; i++) {
             for (int j = 0; j < WIDTH; j++) {
                 JLabel label = new JLabel();
-                label.setLocation(i*CELL_SIZE + startX, j*CELL_SIZE + startY);
+                label.setLocation(j*CELL_SIZE + startX, i*CELL_SIZE + startY);
                 label.setSize(CELL_SIZE, CELL_SIZE);
 
                 if (board[j][i] != null) {
@@ -191,6 +196,8 @@ public class GameOfLife extends JFrame  {
         }
 
         boardPanel.repaint();
+        setFocusable(true);
+        requestFocus();
     }
 
     public void startGame() {
@@ -278,6 +285,7 @@ public class GameOfLife extends JFrame  {
                 // Select organism type from a list
                 String[] options = availableOrganisms.keySet().toArray(new String[0]);
                 String selectedOrganism = (String) JOptionPane.showInputDialog(null, "Choose organism type", "Add organism", JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
+                if(selectedOrganism == null) return;
 
                 // Add selected organism to the board
                 addOrganism(selectedOrganism, x, y);
